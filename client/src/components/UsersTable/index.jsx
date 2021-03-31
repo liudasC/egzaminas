@@ -11,7 +11,7 @@ export class UsersTable extends Component {
                     <td>{age}</td>
                     <td>{email}</td>
                     <td>{password}</td>
-                    <button>Atnaujinti</button>
+                    <button onClick={() => this.props.updateUser(id)}>Atnaujinti</button>
                     <button onClick={() => this.props.deleteUser(id)}>Ištrinti</button>
                 </tr>
             )

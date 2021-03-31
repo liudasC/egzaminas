@@ -7,7 +7,8 @@ import CreateUser from "./components/CreateUser"
 class App extends React.Component {
   state = {
     users: [],
-    editedUserId: null
+    editedUserId: null,
+    error: null
   }
   // GET
   fetchUsers = () => {
@@ -18,11 +19,22 @@ class App extends React.Component {
     console.log(error);
     this.setState({ error });
   }
+  editUser = id => {
+    this.setState({ editedUserId: id === this.state.editedUserId ? null : id })
+  }
 
+  // CREATE
+  createUser = body => {
+    API.createUser(body, this.fetchUsers, this.fetchError)
+  }
 
+  // UPDATE
+  saveUser = body => {
+    API.updateUser(this.state.editedUserId, body, this.fetchUsers, this.fetchError)
+  }
 
   // DELETE
-  deleteUser = (id) => {
+  deleteUser = id => {
     API.deleteUser(id, this.fetchUsers, this.fetchError)
   }
 
@@ -32,6 +44,7 @@ class App extends React.Component {
 
   render() {
     // console.log(this.state.users);
+    console.log(this.state.editedUserId);
     return (
       <div className="App">
         <h1>Vartotojai</h1>
@@ -39,10 +52,13 @@ class App extends React.Component {
           <UsersTable
             users={this.state.users}
             deleteUser={this.deleteUser}
+            updateUser={this.editUser}
           />
 
           <CreateUser
             handleSubmit={this.state.editedUserId ? this.saveUser : this.createUser}
+            isUpdating={Boolean(this.state.editedUserId)}
+            editedUser={this.state.editedUserId ? this.state.users.find(user => user.id === this.state.editedUserId) : null}
           />
         </div>
       </div>
