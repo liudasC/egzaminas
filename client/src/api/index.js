@@ -21,7 +21,7 @@ export const getUsers = async (success, failure) => {
     }
 }
 
-export const postUser = async (body, success, failure) => {
+export const createUser = async (body, success, failure) => {
     try {
         const response = await fetch(`${domain}/users`, {
             ...requestOptions,
@@ -69,7 +69,7 @@ export const deleteUser = async (id, success, failure) => {
 
 const API = {
     getUsers,
-    postUser,
+    createUser,
     updateUser,
     deleteUser
 };

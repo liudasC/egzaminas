@@ -12,7 +12,7 @@ export class CreateUser extends Component {
         isUpdating: false
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = e => {
         e.preventDefault();
         const { name, age, email, password } = this.state;
         this.props.handleSubmit({
@@ -30,8 +30,9 @@ export class CreateUser extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        console.log(props);
         if (props.isUpdating !== state.isUpdating) {
+            console.log(props.isUpdating);
+            // console.log(state.isUpdating);
           return {
             name: props.editedUser?.name ?? '',
             age: props.editedUser?.age ?? '',
@@ -41,7 +42,6 @@ export class CreateUser extends Component {
           }
         }
         return null;
-    
       }
 
     render() {
@@ -53,22 +53,22 @@ export class CreateUser extends Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <InfoInput
-                        name="name"
+                        title="name"
                         value={name}
-                        handleChange={val => this.setState({ name: val })}
+                        handleChange={name => this.setState({ name })}
                     />
                     <InfoInput
-                        name="age"
+                        title="age"
                         value={age}
                         handleChange={val => this.setState({ age: val })}
                     />
                     <InfoInput
-                        name="email"
+                        title="email"
                         value={email}
                         handleChange={val => this.setState({ email: val })}
                     />
                     <InfoInput
-                        name="password"
+                        title="password"
                         value={password}
                         handleChange={val => this.setState({ password: val })}
                     />
