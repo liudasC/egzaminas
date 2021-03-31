@@ -12,7 +12,7 @@ export class UsersTable extends Component {
                     <td>{email}</td>
                     <td>{password}</td>
                     <button>Atnaujinti</button>
-                    <button>Ištrinti</button>
+                    <button onClick={() => this.props.deleteUser(id)}>Ištrinti</button>
                 </tr>
             )
         }

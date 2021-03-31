@@ -5,3 +5,8 @@ h1 {
     text-align: center;
 }
 
+.Display {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 3fr 2fr;
+}
